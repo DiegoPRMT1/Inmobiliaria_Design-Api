@@ -1,0 +1,38 @@
+<style>
+.menu--viola .menu__item {
+    margin: 0 0em; 
+        font-family: 'Noto Serif';
+        font-size: 1.30em;
+}</style>
+<ul id="menu2" class="secundario">
+    <div id="inicio">
+        <section class="section section--menu" id="Viola">
+            <span class="link-copy"></span>
+            <nav class="menu menu--viola">
+                <ul id="menu__list" class="menu__list">
+                    <li data-menuanchor="firstPage" class="menu__item "><a href="{{ path('app_main') }}" class="menu__link">Inicio</a></li>
+                    <li data-menuanchor="secondPage" class="menu__item"><a  href="{{path('app_propiedades')}}"  class="menu__link" {{ app.request.get('_route') == 'app_propiedad' ? 'menu__item--current' : '' }}>Propiedades</a></li>
+                    <li   class="menu__item"><a href="{{ path('app_aboutus') }}" class="menu__link">Nosotros</a></li>
+                </ul>
+            </nav>
+
+        </section>
+    </div>
+    <div id="logo">
+        <a href="{{ path('app_main') }}">
+            <img alt="" class="logo" src="{{ asset('bundles/app/frontend/images/logo-metalizado.png') }}">
+        </a>
+    </div>
+    <div id="elementos">
+        <section class="section section--menu" id="Viola">
+            <span class="link-copy"></span>
+            <nav class="menu menu--viola">
+                <ul id="menu__list" class="menu__list" >
+                    <li data-menuanchor="firstPage" class="menu__item "><a href="{{ path('app_gestion') }}" class="menu__link">Gestiones</a></li>
+                    <li data-menuanchor="firstPage" class="menu__item "><a href="{{ path('app_contacto') }}" class="menu__link">Contacto</a></li>
+                    <li data-menuanchor="secondPage" class="menu__item"><a  href="{{path('app_login')}}"  class="menu__link">Login</a></li>
+                </ul>
+            </nav>
+        </section>
+    </div>
+</ul>

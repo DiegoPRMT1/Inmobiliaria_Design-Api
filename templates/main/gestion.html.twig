@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/frontend/css/gestion.css') }}"/>
+{% endblock %}
+{% block body %}
+    {% include 'partials/main_menu.html.twig' %}
+    <div id="fullpage">
+        <div id="section7" class="section">
+            <div id="subsection5">
+                <div class="divelemento"><h1>Rentabiliza tu propiedad</h1><p>Sácales el máximo partido a tus propiedades, en Your Best Host te garantizamos una gestión fiable, transparente y eficiente de tus inmuebles.</p><p>El alquiler vacacional es una de las mejores maneras de rentabilizar los inmuebles y segundas viviendas que se encuentren en desuso continuo o puntual, garantizando un ingreso mayor frente a un alquiler a largo plazo. Asimismo, te permitirá seguir disfrutando de la vivienda cuando la requieras mientras que te aportará un ingreso extra cuando se encuentre en desuso.</p></div>
+                <div class="divelemento"><h1>Expertos en el área</h1><p>En la actualidad, ya son más de 40 propietarios de viviendas de lujo en Vigo y alrededores, villas, apartamentos dúplex…, los que confían en nosotros para que gestionemos su alquiler vacacional.</p><p>Tu tranquilidad y el bienestar de tu inmueble son nuestra mayor prioridad, tratamos cada una de las propiedades como si de la nuestra se tratara, garantizando siempre la seguridad de las viviendas, estará en las mejores manos.</p></div>
+                <div class="divelemento"><h1>Sin complicaciones</h1><p>Olvídate de las preocupaciones que alquilar una propiedad vacacional implica, nos hacemos cargo de todo para que tú no tengas que hacerlo.</p><p>Your Best Host se hace cargo al completo de todas las gestiones requeridas para el alquiler de las viviendas, desde la promoción para el alquiler, la gestión de las reservas, el cuidado de la vivienda, la atención de los residentes y la adecuación tras la estancia.</p></div>
+            </div>
+
+        </div>
+        <div id="section6" class="section">
+
+            <h1 class="section-header">Contactenos</h1>
+
+            <div class="contact-wrapper">
+
+                <!-- Left contact page -->
+
+                <form id="contact-form" class="form-horizontal" role="form" method="POST" action="{{ path('app_gestion') }}">
+                    {{ form_widget(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="name" placeholder="Nombre" name="{{ form.vars.full_name }}[name]" value="{{ form.vars.value.name }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="tipo" placeholder="TIPO INMUEBLE" name="{{ form.vars.full_name }}[realEstate_type]" value="{{ form.vars.value.realEstate_type }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="direccion" placeholder="DIRECCIÓN" name="{{ form.vars.full_name }}[direccion]" value="{{ form.vars.value.direccion }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="number" class="form-control" id="habitaciones" placeholder="NUMERO HABITACIONES" name="{{ form.vars.full_name }}[n_bedrooms]" value="{{ form.vars.value.n_bedrooms }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control" id="email1" placeholder="EMAIL" name="{{ form.vars.full_name }}[email]" value="{{ form.vars.value.email }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" rows="10" placeholder="DETALLES" name="{{ form.vars.full_name }}[details]" required>{{ form.vars.value.details }}</textarea>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary send-button" id="submit" type="submit" value="ENVIAR">
+                        <div class="alt-send-button">
+                            <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
+                        </div>
+                    </button>
+                </form>
+
+                <!-- Left contact page -->
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,351 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        p {
+            font-size: 1em;
+        }
+
+        .single-room {
+            padding-bottom: 40px;
+        }
+
+      .clients-carousel3{
+	margin-top: 0% !important;
+}
+#precios {
+    margin-top: 4%;
+}
+
+        .single-room .amenities {
+            display: none;
+            padding: 30px 0 10px;
+        }
+
+        @media (min-width: 768px) {
+            .single-room .amenities {
+                font-family: "Nanum Myeongjo", serif;
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+
+        .single-room i,
+        .allrooms i {
+            color: black !important;
+            font-size: 0.8em;
+        }
+
+        .single-room p {
+            line-height: 1.9;
+        }
+
+        .inner-headings {
+
+            margin-top: 10px;
+            padding-top: 4%;
+            font-family: "Nanum Myeongjo", serif;
+            font-weight: bold;
+        }
+
+        .inner-headings-title {
+            font-size: 2.2em
+            padding-top: 3%;
+            font-size: 1.75em;
+            color: black;
+        }
+
+        .single-room .icon-key-value {
+            padding: 15px;
+            border-top: thin solid #ebebeb;
+        }
+
+        .single-room .icon-key-value {
+            display: flex;
+        }
+
+        .single-room .icon-key-value .icon {
+            margin-right: 10px;
+        }
+
+        .single-room .icon-key-value .key {
+            margin-right: 30px;
+            font-weight: bold;
+        }
+
+        .review {
+            background: #6c757d;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .review .comment_container {
+        }
+
+        .review .comment-text {
+            position: relative;
+            border-left: thin solid #cccccc;
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+
+        .review .comment-text::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            border: thin solid #cccccc;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            left: -10px;
+            transform: rotate(45deg);
+            border-right: 0;
+            border-top: 0;
+            background: white;
+        }
+
+        /*  */
+        #booking {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #booking .wpcf7 {
+            background-color: #ffffff;
+            -webkit-box-shadow: 0 0 20px 3px #0000000d;
+            box-shadow: 0 0 20px 3px #0000000d;
+            padding-bottom: 1em;
+        }
+
+        #booking .form-title {
+            padding: 20px 0;
+        }
+
+        @media only screen and (min-width: 992px) {
+            #booking .wpcf7 {
+                margin-bottom: 0;
+            }
+
+            #booking .form-title {
+                padding: 50px 0;
+            }
+        }
+
+        strong {
+            font-size: 2.2em;
+            color: #565e64 !important;
+        }
+
+        #booking .wpcf7-form {
+            padding: 0 1em;
+        }
+
+        #booking .wpcf7-form p {
+            width: 100%;
+            padding: 0 1em;
+        }
+
+        .stars i {
+            color: rgb(253, 215, 0);
+        }
+
+        #booking .wpcf7-form .message {
+            width: 100%;
+        }
+
+        #booking .wpcf7-form label {
+            width: 100%;
+            position: relative;
+        }
+
+        #booking .wpcf7-form .message textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #e8e8e8;
+            background-color: #f9f9f9;
+            padding: 2em;
+        }
+
+        #booking .wpcf7-form p input {
+            height: 50px;
+            color: #24416b;
+            background-color: #f9f9f9;
+            font-size: 15px;
+            padding: 10px 20px;
+            border: 1px solid #d1e8f3;
+            width: 100%;
+            position: relative;
+        }
+
+        #booking .wpcf7-form label::after {
+            display: inline-block;
+            font-family: "Font Awesome 5 Free";
+            content: "\f073";
+            font-weight: 400;
+            position: absolute;
+            right: 20px;
+            color: #b48f31;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: max-content;
+        }
+
+        .contenedor_main {
+            padding-left: 3%;
+            padding-right: 3%;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    {% include 'partials/main_menu2.html.twig' %}
+    <div class="single-room">
+    <div class="single-room-details">
+        <div class="contenedor_main">
+            <div class="row">
+
+                <div class="col-md-9">
+                    <div class="clients-carousel3 owl-carousel">
+                        {%for image in property.images %}
+                        <div class="single-box comentarios">
+                            <img class="habitaciones" alt=""
+                                 src="{{ asset('uploads/files/' ~ image) | imagine_filter('profile_1300x800') }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <div id="precios" class="col-md-3">
+                    <div id="booking">
+                        <div role="form" class="wpcf7" id="wpcf7-f90-o1" lang="en-US" dir="ltr">
+
+
+                            <div class="details">
+                                <!--  -->
+                                <h3 class="form-title"><strong>Detalles</strong></h3>
+                                <ul class="p-0">
+                                    <li class="icon-key-value">
+                                        <div class="icon">
+                                            <i class="fas fa-person-booth"></i>
+                                        </div>
+                                        <div class="key">
+                                            Huespedes:
+                                        </div>
+                                        <div class="value">
+                                            {{ property.guests }}
+                                        </div>
+                                    </li>
+                                    <li class="icon-key-value">
+                                        <div class="icon">
+                                            <i class="fas fa-person-booth"></i>
+                                        </div>
+                                        <div class="key">
+                                            Dormitorios:
+                                        </div>
+                                        <div class="value">
+                                            {{ property.bedrooms }}
+                                        </div>
+                                    </li>
+                                    <li class="icon-key-value">
+                                        <div class="icon">
+                                            <i class="fas fa-person-booth"></i>
+                                        </div>
+                                        <div class="key">
+                                            Camas:
+                                        </div>
+                                        <div class="value">
+                                            2
+                                        </div>
+                                    </li>
+                                    <li class="icon-key-value">
+                                        <div class="icon">
+                                            <i class="fas fa-person-booth"></i>
+                                        </div>
+                                        <div class="key">
+                                            Baños:
+                                        </div>
+                                        <div class="value">
+                                            {{ property.toilets }}
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <h5 class="form-title"><strong>${{ property.price }}</strong> por noche</h5>
+                            <a href="{{ property.url }}" type="button" class="btn btn-secondary btn-lg btn-block">Más información</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-12 contenedor_main">
+                    <h3 style="padding-top:2%;padding-bottom:2%;"><strong>{{ property.name }}</strong></h3>
+
+                    <div>
+                        <p>{{ property.description | raw }}</p>
+                    </div>
+                    <div class="gallery">
+
+                    </div>
+
+                    <h5 class="form-title" style="padding-top:2%;padding-bottom:2%;"><strong>Reviews</strong></h5>
+
+                    <div class="review">
+                        <div class="clients-carousel owl-carousel">
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/3525908/pexels-photo-3525908.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4 style="width:40%;text-align:center"">jimmy kimmel</h4>
+                                </div>
+                            </div>
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/5042302/pexels-photo-5042302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4 style="width:40%;text-align:center"">jimmy kimmel</h4>
+                                </div>
+                            </div>
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/3211476/pexels-photo-3211476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4 style="width:40%;text-align:center"">jimmy kimmel</h4>
+                                </div>
+                            </div>
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/1270076/pexels-photo-1270076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+            <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i
+                        class="icofont-star"></i><i class="icofont-star"></i><i
+                        class="icofont-star"></i></span>
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4 style="width:40%;text-align:center">jimmy kimmel</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% include 'partials/_base_footer.html.twig' %}
+{% endblock %}

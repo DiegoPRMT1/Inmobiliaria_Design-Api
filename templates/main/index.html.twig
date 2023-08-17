@@ -1,0 +1,333 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'partials/main_menu.html.twig' %}
+    <!--
+    <ul class="actions">
+        <li><button id="moveSectionUp">Move Section Up</button></li>
+        <li><button id="moveSectionDown">Move Section Down</button></li>
+    </ul> -->
+
+    <div id="fullpage">
+        <div id="section0" data-section-name="section0" class="section">
+            <div class="intro">
+                <h1>Your Best Host</h1>
+                <h3>Tus vacaciones como nunca las habías imaginado</h3>
+                <form action="{{ path('app_propiedad', {area: 'default', real_estate: 'default'}) }}" method="GET" id="buscador2">
+                    <div id="buscador">
+                        <div class="select">
+                            <select class="select-text" required id="select-area">
+                                <option value="" disabled selected></option>
+                                {% set uniqueAreas = [] %}
+                                {% for list in lista %}
+                                    {% set lowerCaseArea = list.area|capitalize %}
+                                    {% if lowerCaseArea not in uniqueAreas %}
+                                        {% set uniqueAreas = uniqueAreas|merge([lowerCaseArea]) %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% for area in uniqueAreas %}
+                                    <option value="{{ area }}">{{ area }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar"></span>
+                            <label class="select-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="black"
+                                     width="1.5em" height="1.5em">
+                                    <path d="M 13.5 4.9003906 C 11.581818 4.9003906 10 6.4822088 10 8.4003906 L 10 20.710938 A 1.50015 1.50015 0 1 0 13 20.710938 L 13 8.4003906 C 13 8.1185724 13.218182 7.9003906 13.5 7.9003906 L 34.5 7.9003906 C 34.781818 7.9003906 35 8.1185724 35 8.4003906 L 35 13.097656 A 1.5006446 1.5006446 0 0 0 35.603516 16.007812 C 38.024181 15.84087 40.447539 16.830017 42.148438 18.871094 A 1.50015 1.50015 0 0 0 42.15625 18.882812 C 45.01247 22.243071 44.493133 27.374244 41.162109 30.039062 A 1.5007322 1.5007322 0 0 0 43.037109 32.382812 C 47.704466 28.648927 48.384518 21.585128 44.445312 16.945312 C 42.741757 14.904648 40.447531 13.607403 38 13.164062 L 38 8.4003906 C 38 6.4822088 36.418182 4.9003906 34.5 4.9003906 L 13.5 4.9003906 z M 29.964844 15.197266 A 1.50015 1.50015 0 0 0 29.044922 15.554688 C 24.401776 19.385282 23.71247 26.44229 27.65625 31.082031 C 29.580906 33.346332 32.258192 34.890484 35.240234 35.009766 A 1.5002067 1.5002067 0 1 0 35.359375 32.011719 C 33.341418 31.931 31.418703 30.874371 29.943359 29.138672 C 27.08714 25.778413 27.598224 20.636592 30.955078 17.867188 A 1.50015 1.50015 0 0 0 29.964844 15.197266 z M 36.078125 19.189453 A 1.50015 1.50015 0 0 0 34.599609 20.710938 L 34.599609 22.511719 L 32.800781 22.511719 A 1.50015 1.50015 0 1 0 32.800781 25.511719 L 34.599609 25.511719 L 34.599609 27.310547 A 1.50015 1.50015 0 1 0 37.599609 27.310547 L 37.599609 25.511719 L 39.400391 25.511719 A 1.50015 1.50015 0 1 0 39.400391 22.511719 L 37.599609 22.511719 L 37.599609 20.710938 A 1.50015 1.50015 0 0 0 36.078125 19.189453 z M 11.476562 25.478516 A 1.50015 1.50015 0 0 0 10 27 L 10 39.599609 C 10 42.387109 13.372336 44.113978 15.615234 42.388672 L 24.001953 36.316406 L 32.429688 42.322266 C 33.569226 43.134956 35.028036 43.171828 36.117188 42.605469 C 37.207026 42.038752 38 40.8625 38 39.5 L 38 37.46875 A 1.50015 1.50015 0 1 0 35 37.46875 L 35 39.5 C 35 39.7375 34.892583 39.860076 34.732422 39.943359 C 34.572261 40.026639 34.432019 40.06472 34.171875 39.878906 A 1.50015 1.50015 0 0 0 34.169922 39.878906 L 25.470703 33.677734 L 25.660156 33.839844 C 24.771399 32.951087 23.382033 33.040228 22.501953 33.699219 L 13.820312 39.984375 A 1.50015 1.50015 0 0 0 13.785156 40.011719 C 13.428106 40.286413 13 40.012109 13 39.599609 L 13 27 A 1.50015 1.50015 0 0 0 11.476562 25.478516 z"/>
+                                </svg>
+                                ¿Adónde vas?</label>
+                        </div>
+                        <div class="select">
+                            <select class="select-text" required id="select-real-estate">
+                                <option value="" disabled selected></option>
+                                {% for realState in realStates %}
+                                    <option value="{{ realState.name }}">{{ realState.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar"></span>
+                            <label class="select-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24"
+                                     width="1.5em" height="1.5em">
+                                    <path d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 11 21 L 11 15 L 13 15 L 13 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z M 12 4.7910156 L 18 10.191406 L 18 11 L 18 19 L 15 19 L 15 13 L 9 13 L 9 19 L 6 19 L 6 10.191406 L 12 4.7910156 z"/>
+                                </svg>
+                                Tipo de inmueble</label>
+                        </div>
+                        <button type="button" id="lupa" class="btn  btn-submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="black" width="2em"
+                                 height="2em">
+                                <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"/>
+                            </svg>
+                        </button>
+                        <!--Select with pure css-->
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="section1" data-section-name="section1" class="section">
+
+
+            <div class="carousel">
+                <div class="carousel__nav">
+   <span id="moveLeft" class="carousel__arrow">
+        <svg class="carousel__icon" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+</svg>
+    </span>
+                    <span id="moveRight" class="carousel__arrow">
+      <svg class="carousel__icon" width="24" height="24" viewBox="0 0 24 24">
+  <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+</svg>
+    </span>
+                </div>
+                <div class="carousel-item carousel-item--1">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h1 class="carousel-item__title">Cautívate</h1>
+                            <p class="carousel-item__description"> Déjate cautivar por su historia y vive una experiencia auténtica en el corazón de la ciudad.</p>
+                            <a href="#" class="carousel-item__btn">Visita nuestras propiedades</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item--2">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h1 class="carousel-item__title">Explora</h1>
+                            <p class="carousel-item__description">Explora pisos que despiertan tu imaginación y superan tus expectativas. Descubre un mundo de posibilidades que te sorprenderán en cada rincón.</p>
+                            <a href="#" class="carousel-item__btn">Visita nuestras propiedades</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item--3">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h1 class="carousel-item__title">Armonía</h1>
+                            <p class="carousel-item__description">Descubre la armonía entre la vida urbana y la naturaleza en nuestros pisos en alquiler. Espacios diseñados para acoger la belleza natural
+                                que te rodea, creando un oasis en medio de la ciudad.</p>
+                            <a href="#" class="carousel-item__btn">Visita nuestras propiedades</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-item--4">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h1 class="carousel-item__title">Experimenta </h1>
+                            <p class="carousel-item__description">Experimenta el placer de vivir en un piso que supera tus sueños más audaces. Con todas las comodidades y servicios que mereces,
+                                ¡te encantará quedarte para siempre!</p>
+                            <a href="#" class="carousel-item__btn">Visita nuestras propiedades</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-item--5">
+                    <div class="carousel-item__image"></div>
+                    <div class="carousel-item__info">
+                        <div class="carousel-item__container">
+                            <h1 class="carousel-item__title">Hogar</h1>
+                            <p class="carousel-item__description">Haz de tu hogar un espacio que refleje tu personalidad y estilo. Encuentra pisos en alquiler con carácter,
+                                donde podrás crear recuerdos que perdurarán toda la vida.</p>
+                            <a href="#" class="carousel-item__btn">Visita nuestras propiedades</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="section2" data-section-name="section2" class="section">
+
+            <!-- testimonios -->
+            <section class="testimonial">
+                <div class="container">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="clients-carousel2 owl-carousel">
+                            {% for property in properties %}
+                                <a href="{{ path('app_single', {id: property.id}) }}">
+                                    <div class="single-box propiedades"
+                                         style="background-image: url({{ asset('uploads/files/' ~ property.images.first()) | imagine_filter('profile_400x600') }});background-size:cover;">
+                                        <div>
+                                            <div class="panel_carousel">
+                                                <div class="flex-1 inline-flex items-center  centro">
+                                                    <i class="fa-solid fa-bath"></i>
+                                                    <p><span class="text-black-900 font-bold">{{ property.toilets }}</span></p>
+
+                                                </div>
+                                                <div class="flex-1 inline-flex items-center centro">
+                                                    <i class="fa-solid fa-bed"></i>
+                                                    <p><span class="text-black-900 font-bold">{{ property.bedrooms }}</span></p>
+
+                                                </div>
+
+                                                <div class="flex-1 inline-flex items-center centro">
+                                                    <i class="fa-solid fa-person-walking-luggage"></i>
+                                                    <p><span class="text-black-900 font-bold">{{ property.guests }}</span></p>
+
+                                                </div>
+                                                <div class="flex-1 inline-flex items-center centro">
+                                                    <i class="fa-solid fa-location-dot"></i>
+                                                    <p><span class="text-black-900 flex-1 inline-flex font-bold">{{ property.area }}</span></p>
+                                                </div>
+
+                                            </div>
+                                            <h6 class="tag">{{ property.price }}€</h6>
+                                        </div>
+                                        <div class="content">
+                                            <h4>{{ property.name }}</h4>
+                                            <p>{{ property.description | raw }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <div id="section3" data-section-name="section3" class="section">
+            <div class="flex-container">
+                <div class="flex-slide home">
+                    <div class="flex-title flex-title-home">Metodo</div>
+                    <div class="flex-about  flex-about-home">
+                        <div id="metodo">
+                            <div class="card3">
+                                <div class="svgc">
+                                    <svg width="3.5em" height="3.5em" viewBox="0 -3 24 24" fill="#fff"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.75828 15.6767C9.1701 15.6322 9.46787 15.2623 9.42337 14.8505C9.37888 14.4386 9.00896 14.1409 8.59714 14.1854L8.75828 15.6767ZM5.50506 15.954L5.13565 15.3013C5.11774 15.3114 5.10026 15.3223 5.08325 15.3339L5.50506 15.954ZM5.07996 17.376L4.49387 17.844C4.51869 17.8751 4.54594 17.9041 4.57537 17.9309L5.07996 17.376ZM7.59059 18.567L7.76104 17.8367C7.74042 17.8318 7.71962 17.8279 7.69867 17.8249L7.59059 18.567ZM11.7002 19L11.715 18.2502C11.7052 18.25 11.6954 18.25 11.6856 18.2502L11.7002 19ZM15.8098 18.568L15.7018 17.8259C15.6809 17.8289 15.6601 17.8328 15.6396 17.8376L15.8098 18.568ZM18.3205 17.377L18.8251 17.9319C18.8545 17.9051 18.8817 17.8761 18.9065 17.845L18.3205 17.377ZM17.8954 15.955L18.3172 15.3349C18.3002 15.3234 18.2828 15.3125 18.265 15.3024L17.8954 15.955ZM14.8035 14.1854C14.3917 14.1408 14.0217 14.4385 13.9771 14.8503C13.9325 15.2621 14.2301 15.6321 14.6419 15.6767L14.8035 14.1854ZM11.7002 14.627L11.1771 15.1644C11.4682 15.4479 11.9322 15.4479 12.2234 15.1644L11.7002 14.627ZM8.80446 11.808L9.32766 11.2706L9.32151 11.2647L8.80446 11.808ZM8.80446 6.16803L9.32151 6.71132L9.32225 6.7106L8.80446 6.16803ZM14.596 6.16803L14.0782 6.7106L14.0789 6.71132L14.596 6.16803ZM14.596 11.808L14.0789 11.2647L14.0728 11.2706L14.596 11.808ZM11.7002 10.5L11.6868 11.2499L11.6935 11.25L11.7002 10.5ZM10.3821 9.10764L11.1321 9.11646L10.3821 9.10764ZM11.7326 7.74827L11.7377 6.99828L11.7326 7.74827ZM13.0652 9.12603L13.8152 9.13337L13.8152 9.12698L13.0652 9.12603ZM8.59714 14.1854C7.3814 14.3167 6.20441 14.6964 5.13565 15.3013L5.87448 16.6067C6.76641 16.1019 7.74695 15.786 8.75828 15.6767L8.59714 14.1854ZM5.08325 15.3339C4.687 15.6034 4.32822 15.9645 4.18638 16.4389C4.03035 16.9608 4.18328 17.455 4.49387 17.844L5.66605 16.908C5.62608 16.858 5.62227 16.8352 5.62361 16.8408C5.62425 16.8434 5.62519 16.8492 5.62497 16.8568C5.62487 16.8602 5.62454 16.8632 5.62416 16.8655C5.62379 16.8677 5.62345 16.8688 5.62352 16.8686C5.6255 16.862 5.6689 16.7496 5.92688 16.5742L5.08325 15.3339ZM4.57537 17.9309C5.3895 18.6713 6.40026 19.1516 7.4825 19.3092L7.69867 17.8249C6.91559 17.7108 6.18013 17.3628 5.58456 16.8212L4.57537 17.9309ZM7.42014 19.2974C8.82842 19.6261 10.2706 19.778 11.7148 19.7499L11.6856 18.2502C10.366 18.2759 9.0482 18.137 7.76104 17.8367L7.42014 19.2974ZM11.6854 19.7499C13.1296 19.7784 14.5718 19.6267 15.9801 19.2984L15.6396 17.8376C14.3524 18.1377 13.0345 18.2762 11.715 18.2502L11.6854 19.7499ZM15.9179 19.3102C17.0002 19.1526 18.0109 18.6723 18.8251 17.9319L17.8159 16.8222C17.2203 17.3638 16.4848 17.7118 15.7018 17.8259L15.9179 19.3102ZM18.9065 17.845C19.2171 17.456 19.3701 16.9618 19.214 16.4399C19.0722 15.9655 18.7134 15.6044 18.3172 15.3349L17.4735 16.5752C17.7315 16.7506 17.7749 16.863 17.7769 16.8696C17.777 16.8698 17.7766 16.8687 17.7763 16.8665C17.7759 16.8642 17.7756 16.8612 17.7755 16.8578C17.7752 16.8502 17.7762 16.8444 17.7768 16.8418C17.7782 16.8362 17.7743 16.859 17.7344 16.909L18.9065 17.845ZM18.265 15.3024C17.1963 14.6972 16.0193 14.3171 14.8035 14.1854L14.6419 15.6767C15.6533 15.7862 16.6339 16.1025 17.5258 16.6076L18.265 15.3024ZM12.2234 14.0896L9.32762 11.2706L8.2813 12.3454L11.1771 15.1644L12.2234 14.0896ZM9.32151 11.2647C8.70763 10.6805 8.3549 9.85603 8.3549 8.98803H6.8549C6.8549 10.2604 7.3715 11.4796 8.28742 12.3513L9.32151 11.2647ZM8.3549 8.98803C8.3549 8.12002 8.70763 7.29554 9.32151 6.71132L8.28742 5.62474C7.3715 6.4964 6.8549 7.71561 6.8549 8.98803H8.3549ZM9.32225 6.7106C10.6644 5.4298 12.7361 5.4298 14.0782 6.7106L15.1138 5.62545C13.192 3.79152 10.2084 3.79152 8.28667 5.62545L9.32225 6.7106ZM14.0789 6.71132C14.6928 7.29554 15.0455 8.12002 15.0455 8.98803H16.5455C16.5455 7.71561 16.0289 6.4964 15.113 5.62474L14.0789 6.71132ZM15.0455 8.98803C15.0455 9.85603 14.6928 10.6805 14.0789 11.2647L15.113 12.3513C16.0289 11.4796 16.5455 10.2604 16.5455 8.98803H15.0455ZM14.0728 11.2706L11.1771 14.0896L12.2234 15.1644L15.1191 12.3454L14.0728 11.2706ZM11.7136 9.75015C11.4056 9.74463 11.1278 9.4789 11.1321 9.11646L9.63216 9.09882C9.61862 10.2504 10.5188 11.229 11.6868 11.2499L11.7136 9.75015ZM11.1321 9.11646C11.1363 8.75433 11.4197 8.49614 11.7274 8.49825L11.7377 6.99828C10.5692 6.99027 9.64571 7.94695 9.63216 9.09882L11.1321 9.11646ZM11.7274 8.49825C12.0353 8.50036 12.3157 8.76274 12.3152 9.12507L13.8152 9.12698C13.8167 7.97521 12.906 7.00629 11.7377 6.99828L11.7274 8.49825ZM12.3152 9.11868C12.3116 9.48853 12.0219 9.75286 11.7069 9.75006L11.6935 11.25C12.8719 11.2605 13.8038 10.2951 13.8152 9.13337L12.3152 9.11868Z"
+                                              fill="#fff"/>
+                                </div>
+                                <h1 class="cardt">Encuentra tu destino</h1>
+                                </svg><p>Encuentra la propiedad que más se ajuste a tus necesidades entre nuestra variedad de inmuebles de lujo</p></div>
+                          
+                             <div class="card3">
+                                <div class="svgc">
+                                    <svg fill="#fff" width="2.5em" height="2.5em" viewBox="0 0 24 24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.692,7.436a3.112,3.112,0,0,0-.651-3.442L6.955,1.909A3.064,3.064,0,0,0,4.3,1.035,3.1,3.1,0,0,0,2,2.672a8.58,8.58,0,0,0-.727,6.186C2.606,14.138,9.863,21.4,15.142,22.723a8.938,8.938,0,0,0,2.18.274,8.54,8.54,0,0,0,4.006-1,3.11,3.11,0,0,0,.764-4.951h0L20.006,14.96a3.11,3.11,0,0,0-3.444-.651,4.859,4.859,0,0,0-1.471.987c-.178.177-.5.205-.977.077A9.981,9.981,0,0,1,8.626,9.886c-.126-.471-.1-.8.078-.977A4.864,4.864,0,0,0,9.692,7.436Zm3.9,9.87a2.821,2.821,0,0,0,2.907-.6,2.906,2.906,0,0,1,.874-.576,1.1,1.1,0,0,1,1.214.239l2.085,2.085a1.089,1.089,0,0,1,.31.942,1.114,1.114,0,0,1-.591.826,6.516,6.516,0,0,1-4.766.556C11.089,19.641,4.36,12.912,3.216,8.37A6.53,6.53,0,0,1,3.773,3.6,1.115,1.115,0,0,1,4.6,3.013,1.044,1.044,0,0,1,4.767,3a1.088,1.088,0,0,1,.774.323L7.626,5.408a1.1,1.1,0,0,1,.239,1.213A2.9,2.9,0,0,1,7.29,7.5,2.817,2.817,0,0,0,6.7,10.4C7.417,13.1,10.9,16.583,13.6,17.306ZM17,4V6h2a1,1,0,0,1,0,2H17v2a1,1,0,0,1-2,0V8H13a1,1,0,0,1,0-2h2V4a1,1,0,0,1,2,0Z"/>
+                                    </svg>
+                                </div>
+                                <h1 class="cardt">Reserva</h1>
+                                <p>Comprueba la disponibilidad, selecciona las fechas y ¡realiza tu reserva!</p></div>
+                                 <div class="card3">
+                                <div class="svgc">
+                                    <svg fill="#fff" width="3em" height="3em" viewBox="0 0 24 24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2,21h8a1,1,0,0,0,0-2H3.071A7.011,7.011,0,0,1,10,13a5.044,5.044,0,1,0-3.377-1.337A9.01,9.01,0,0,0,1,20,1,1,0,0,0,2,21ZM10,5A3,3,0,1,1,7,8,3,3,0,0,1,10,5ZM20,15l3,.438L20.5,17.5l.781,3.5L18.5,19l-2.781,2,.781-3.5L14,15.438,17,15l1.5-3Z"/>
+                                    </svg>
+                                </div>
+                                <h1 class="cardt">¡Disfruta!</h1>
+                                <p>Alójate en las propiedades más exclusivas de Vigo y olvídate de las preocupaciones, nosotros nos encargamos de todo para que tú te centres en lo importante, disfrutar.</p></div>
+                         
+                        <p></p></div>
+                        </div>
+                          
+                           
+                </div>
+                <div class="flex-slide about">
+                    <div class="flex-title">Gestión</div>
+                    <div class="flex-about">
+                        <div class="card4"><p>Tu propiedad en manos de expertos, deja que nos ocupemos e incrementa tus
+                                ingresos</p>
+                            <a href="{{ path('app_gestion') }}"><button type="button" class="btn btn-light btn-lg btn-block">¡Contáctanos!</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="section4" data-section-name="section4" class="section">
+
+            <section class="testimonial2">
+                <div class="container">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="clients-carousel owl-carousel">
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/3525908/pexels-photo-3525908.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4>Jason Doe</h4>
+
+                                </div>
+                            </div>
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/5042302/pexels-photo-5042302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4>Dave Wood</h4>
+
+                                </div>
+                            </div>
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/3211476/pexels-photo-3211476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4>Matt Demon</h4>
+
+                                </div>
+                            </div>
+                            <div class="single-box comentarios">
+                                <div class="img-area"><img alt="" class="img-fluid"
+                                                           src="https://images.pexels.com/photos/1270076/pexels-photo-1270076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                                <div class="content">
+                                    <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i
+                                                class="icofont-star"></i><i class="icofont-star"></i><i
+                                                class="icofont-star"></i></span>
+                                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloribus
+                                        minima praesentium laborum ea earum."</p>
+                                    <h4>jimmy kimmel</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        {% block footer %}{% include 'partials/_base_footer.html.twig' %}{% endblock %}
+
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {% include 'partials/_base_head_scripts.html.twig' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnSubmit = document.querySelector('.btn-submit');
+            btnSubmit.addEventListener('click', function() {
+                const selectArea = document.getElementById('select-area');
+                const selectRealEstate = document.getElementById('select-real-estate');
+                const areaValue = selectArea.value;
+                const realEstateValue = selectRealEstate.value;
+                const form = document.getElementById('buscador2');
+                form.action = "/es/propiedad/" + encodeURIComponent(areaValue) + "/" + encodeURIComponent(realEstateValue);
+                form.submit();
+            });
+        });
+    </script>
+{% endblock %}

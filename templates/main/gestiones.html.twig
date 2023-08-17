@@ -1,0 +1,63 @@
+{% extends 'base.html.twig'  %}
+{% block stylesheets %}
+    {% include 'partials/_base_head_stylesheets.html.twig' %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/frontend/css/gestiones.css') }}" />
+{% endblock %}
+{% block body %}
+    {% include 'partials/main_menu.html.twig' %}
+    <div id="main">
+
+        <div id="derecha">
+            <div class="contact-form-container">
+                <div class="contact-us">
+                    <div class="contact-header">
+                        <h1>
+                            &#9135;&#9135;&#9135;&#9135;&nbsp;&nbsp;CONTACTO
+                        </h1>
+                    </div>
+                </div>
+                <div class="header">
+                </div>
+
+                <div class="contact-form">
+                    <form method="POST" role="form" action="{{ path('app_contacto') }}">
+                        {{ form_widget(form._token) }}
+                        <input type="text" class="form-control" id="name" placeholder="Nombre" name="{{ form.vars.full_name }}[name]" value="{{ form.vars.value.name }}" required>
+                        <input type="email" class="form-control" id="email" placeholder="Email" name="{{ form.vars.full_name }}[email]" value="{{ form.vars.value.email }}" required>
+                        <textarea class="form-control" rows="4" placeholder="Háblanos de tu proyecto..." name="{{ form.vars.full_name }}[content]" required>{{ form.content.vars.value }}</textarea>
+
+                        <button id="submit" type="submit" value="ENVIAR">Enviar</button>
+                    </form>
+
+                    <div id="media">
+                        <div class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>
+                                Av .Hispanidad, 36202
+                            </h3>
+                            <h3>
+                                Vigo, Pontevedra
+                            </h3>
+                        </div>
+                        <div class="phone">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>
+                                62745010
+                            </h3>
+                        </div>
+                        <div class="email">
+                            <i class="fas fa-envelope"></i>
+                            <h3>
+                                info@yourbesthost.com
+                            </h3>
+                        </div>
+                    </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2954.1392731839705!2d-8.733243209079578!3d42.23283746889354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f62137a46c7b7%3A0xd416afc70d93420e!2sAvenida%20da%20Hispanidade%2C%2015%2C%2036203%20Vigo%2C%20Pontevedra!5e0!3m2!1ses-419!2ses!4v1688455405427!5m2!1ses-419!2ses" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

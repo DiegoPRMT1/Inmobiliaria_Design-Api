@@ -1,0 +1,237 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="{{ asset('bundles/app/frontend/js/fullpage.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="{{ asset('bundles/app/frontend/js/indexfilters.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+<script type="text/javascript">
+    //using document ready...
+    $(document).ready(function(){
+
+        //initialising fullpage.js in the jQuery way
+        $('#fullpage').fullpage({
+
+            navigation: true,
+            slidesNavigation: true,
+            afterLoad: function(origin, destination) {
+      // Obtener el nombre de la sección actual
+      var sectionName = destination.item.getAttribute('data-section-name');
+    if(sectionName=="section1"){
+        const elementos = document.querySelectorAll('.nav-item a' );
+        console.log(elementos);
+
+// Agregar la clase "negro" a cada elemento
+elementos.forEach(elemento => {
+  elemento.classList.add('negro');
+  });
+    }else{
+    const elementos = document.querySelectorAll('.nav-item a');
+
+// Agregar la clase "negro" a cada elemento
+elementos.forEach(elemento => {
+  elemento.classList.remove('negro');
+  });
+    } 
+    }
+        });
+
+        // calling fullpage.js methods using jQuery
+        $('#moveSectionUp').click(function(e){
+            e.preventDefault();
+            $.fn.fullpage.moveSectionUp();
+        });
+
+        $('#moveSectionDown').click(function(e){
+            e.preventDefault();
+            $.fn.fullpage.moveSectionDown();
+        });
+    });
+</script>
+<script type="text/javascript" src="{{ asset('bundles/app/frontend/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('bundles/app/frontend/js/classie.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+</script>
+<script>
+    $(function(){
+        $('.carousel-item').eq(0).addClass('activo');
+        var total = $('.carousel-item').length;
+        var current = 0;
+        $('#moveRight').on('click', function(){
+            var next=current;
+            current= current+1;
+            setSlide(next, current);
+        });
+        $('#moveLeft').on('click', function(){
+            var prev=current;
+            current = current- 1;
+            setSlide(prev, current);
+        });
+        function setSlide(prev, next){
+            var slide= current;
+            if(next>total-1){
+                slide=0;
+                current=0;
+            }
+            if(next<0){
+                slide=total - 1;
+                current=total - 1;
+            }
+            $('.carousel-item').eq(prev).removeClass('activo');
+            $('.carousel-item').eq(slide).addClass('activo');
+            setTimeout(function(){
+
+            },800);
+        }
+    });
+(function(){
+	$(".flex-slide").each(function(){
+		$(this).hover(function(){
+			$(this).find('.flex-title').css({
+				transform: 'rotate(0deg)',
+				top: '10%'
+			});
+			$(this).find('.flex-about').css({
+				opacity: '1'
+			});
+		}, function(){
+			$(this).find('.flex-title').css({
+				transform: 'rotate(90deg)',
+				top: '25%'
+			});
+			$(this).find('.flex-about').css({
+				opacity: '0'
+			});
+		})
+	});
+})();
+
+
+
+
+</script>
+<script>
+    $('.clients-carousel').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 450,
+        margin: 30,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            991: {
+                items: 1
+            },
+            1200: {
+                items: 4
+            },
+            1920: {
+                items: 4
+            }
+        }
+    });
+
+    $('.clients-carousel2').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 450,
+        margin: 30,
+        rtl: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            991: {
+                items: 2
+            },
+            1200: {
+                items: 4
+            },
+            1920: {
+                items: 4
+            }
+        }
+    });
+$('.clients-carousel3').owlCarousel({
+    loop: true,
+        nav: false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 450,
+        margin: 30,
+        rtl: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            991: {
+                items: 1
+            },
+            1200: {
+                items: 1
+            },
+            1920: {
+                items: 1
+            }
+        
+    }
+});
+</script>
+
+<script>
+    (function() {
+        [].slice.call(document.querySelectorAll('.menu')).forEach(function(menu) {
+            var menuItems = menu.querySelectorAll('.menu__link'),
+                setCurrent = function(ev) {
+
+
+                    var item = ev.target.parentNode; // li
+
+                    // return if already current
+                    if (classie.has(item, 'menu__item--current')) {
+                        return false;
+                    }
+                    // remove current
+                    classie.remove(menu.querySelector('.menu__item--current'), 'menu__item--current');
+                    // set current
+                    classie.add(item, 'menu__item--current');
+                };
+
+            [].slice.call(menuItems).forEach(function(el) {
+                el.addEventListener('click', setCurrent);
+            });
+        });
+
+        [].slice.call(document.querySelectorAll('.link-copy')).forEach(function(link) {
+            link.setAttribute('data-clipboard-text', location.protocol + '//' + location.host + location.pathname + '#' + link.parentNode.id);
+            new Clipboard(link);
+            link.addEventListener('click', function() {
+                classie.add(link, 'link-copy--animate');
+                setTimeout(function() {
+                    classie.remove(link, 'link-copy--animate');
+                }, 300);
+            });
+        });
+    })(window);
+</script>
+<script src="https://kit.fontawesome.com/b73881b7c2.js" crossorigin="anonymous"></script>

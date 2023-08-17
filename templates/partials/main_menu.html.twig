@@ -1,0 +1,38 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark ">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page"  href="{{ path('app_main') }}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('app_propiedades')}}"  class="menu__link" {{ app.request.get('_route') == 'app_propiedad' ? 'active' : ''}} >Propiedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_aboutus') }}">Nosotros</a>
+          </li>
+        </ul>
+            <div id="logo">
+        <a href="{{ path('app_main') }}">
+            <img alt="" class="logo" src="{{ asset('bundles/app/frontend/images/logo-metalizado.png') }}">
+        </a>
+    </div>
+        <form class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ path('app_gestion') }}">Gestiones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="{{ path('app_contacto') }}" >Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('app_login')}}">Login</a>
+          </li>
+        </ul>
+        </form>
+      </div>
+    </div>
+  </nav>
